@@ -1,2 +1,2 @@
-export '../auth_sign/auth_signIn_page.dart';
-export '../real_purchase/real_purchase_page.dart';
+export '../modules/auth_sign/auth_signin_page.dart';
+export '../modules/real_purchase/real_purchase_page.dart';

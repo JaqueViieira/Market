@@ -1,5 +1,5 @@
 import 'package:get/get.dart';
-import 'package:shopping/real_purchase/real_purchase_controller.dart';
+import 'package:shopping/modules/real_purchase/real_purchase_controller.dart';
 
 class RealPurchaseBindings implements Bindings {
   @override

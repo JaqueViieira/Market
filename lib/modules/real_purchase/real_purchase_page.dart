@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopping/real_purchase/real_purchase_bindings.dart';
-import 'package:shopping/real_purchase/widgets/body_real_purchase.dart';
+import 'package:shopping/modules/real_purchase/real_purchase_bindings.dart';
+import 'package:shopping/modules/real_purchase/widgets/body_real_purchase.dart';
 
 class RealPurchasePage extends StatelessWidget {
   static const String routeName = '/real_purchase';

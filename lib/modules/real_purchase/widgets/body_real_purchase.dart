@@ -1,8 +1,10 @@
+// import 'package:brasil_fields/brasil_fields.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:shopping/real_purchase/real_purchase_controller.dart';
+
+import '../real_purchase_controller.dart';
 
 class BodyRealPurchase extends GetView<RealPurchaseController> {
   const BodyRealPurchase({Key? key}) : super(key: key);

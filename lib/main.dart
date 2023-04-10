@@ -1,7 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopping/auth_sign/auth_signIn_bindings.dart';
+import 'package:shopping/modules/auth_sign/auth_signin_bindings.dart';
 import 'package:shopping/routes/app_imports.dart';
 
 import 'routes/app_pages.dart';
