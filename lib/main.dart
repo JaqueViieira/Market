@@ -1,9 +1,9 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:shopping/modules/auth_sign/auth_signin_bindings.dart';
-import 'package:shopping/routes/app_imports.dart';
+import 'package:shopping/modules/auth_sign/auth_bindings.dart';
 
+import 'routes/app_imports.dart';
 import 'routes/app_pages.dart';
 
 void main() async {
@@ -26,9 +26,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      initialBinding: AuthSignInBindings(),
+      initialBinding: AuthBindings(),
       getPages: AppPages.pages,
-      initialRoute: AuthSignInPage.routeName,
+      initialRoute: AuthPage.routeName,
       title: 'Market',
       theme: ThemeData(
         primarySwatch: Colors.green,

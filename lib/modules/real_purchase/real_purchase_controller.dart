@@ -38,11 +38,10 @@ class RealPurchaseController extends GetxController {
 
   Future<void> addShopping() async {
     if (textProduct.text.isEmpty || textValue.text.isEmpty) {
-      const SnackBar(
-        content: Text(
-          'Os campos não podem ficarem vazio',
-        ),
-      );
+      Get.showSnackbar(const GetSnackBar(
+        title: 'Alerta',
+        message: 'Os campos não podem ser vazios',
+      ));
 
       return;
     }

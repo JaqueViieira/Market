@@ -4,7 +4,15 @@ import 'app_imports.dart';
 
 abstract class AppPages {
   static final List<GetPage> pages = [
-    AuthSignInPage.page,
-    RealPurchasePage.page,
+    GetPage(
+      name: AuthPage.routeName,
+      page: () => const AuthPage(),
+      binding: AuthBindings(),
+    ),
+    GetPage(
+      name: RealPurchasePage.routeName,
+      page: () => const RealPurchasePage(),
+      binding: RealPurchaseBindings(),
+    ),
   ];
 }

@@ -1,4 +1,3 @@
-// import 'package:brasil_fields/brasil_fields.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,69 +12,73 @@ class BodyRealPurchase extends GetView<RealPurchaseController> {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(15),
-      child: GetBuilder<RealPurchaseController>(
-        builder: (controller) {
-          return Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              TextFormField(
-                controller: controller.textProduct,
-                decoration: const InputDecoration(
-                  hintText: 'Nome do Produto',
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          TextFormField(
+            controller: controller.textProduct,
+            decoration: const InputDecoration(
+              hintText: 'Nome do Produto',
+            ),
+          ),
+          TextFormField(
+            controller: controller.textValue,
+            decoration: const InputDecoration(
+              hintText: 'Valor do Produto',
+            ),
+            inputFormatters: [
+              FilteringTextInputFormatter.digitsOnly,
+              CentavosInputFormatter(moeda: true),
+            ],
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          ElevatedButton(
+            onPressed: () => controller.addShopping(),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Colors.green.shade300),
+            child: const Text(
+              'Adicionar',
+            ),
+          ),
+          const SizedBox(
+            height: 15,
+          ),
+          SizedBox(
+            height: 40,
+            child: TextField(
+              onChanged: (value) {
+                controller.search(
+                  value,
+                  controller.shoppingList,
+                );
+              },
+              decoration: InputDecoration(
+                labelText: 'Pesquisar',
+                filled: true,
+                suffixIcon: const Icon(Icons.search),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
                 ),
               ),
-              TextFormField(
-                controller: controller.textValue,
-                decoration: const InputDecoration(
-                  hintText: 'Valor do Produto',
-                ),
-                inputFormatters: [
-                  FilteringTextInputFormatter.digitsOnly,
-                  CentavosInputFormatter(moeda: true),
-                ],
-              ),
-              const SizedBox(
-                height: 10,
-              ),
-              ElevatedButton(
-                onPressed: () => controller.addShopping(),
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green.shade300),
-                child: const Text(
-                  'Adicionar',
-                ),
-              ),
-              const SizedBox(
-                height: 15,
-              ),
-              SizedBox(
-                height: 40,
-                child: TextField(
-                  onChanged: (value) {
-                    controller.search(
-                      value,
-                      controller.shoppingList,
-                    );
-                  },
-                  decoration: InputDecoration(
-                    labelText: 'Pesquisar',
-                    filled: true,
-                    suffixIcon: const Icon(Icons.search),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(10),
+            ),
+          ),
+          GetBuilder<RealPurchaseController>(
+            builder: (control) {
+              return Expanded(
+                child: Visibility(
+                  visible: controller.shoppingList.isNotEmpty,
+                  replacement: const Center(
+                    child: Text(
+                      'Nenhum produto adicionado',
+                      style: TextStyle(color: Colors.orange),
                     ),
                   ),
-                ),
-              ),
-              Expanded(
-                child: Obx(() {
-                  final filteredList = controller.resultShoppingList.isNotEmpty
-                      ? controller.resultShoppingList
-                      : controller.shoppingList;
-                  return ListView.builder(
-                    itemCount: filteredList.length,
+                  child: ListView.builder(
+                    itemCount: controller.shoppingList.length,
                     itemBuilder: (context, index) {
-                      var shopping = filteredList[index];
+                      var shopping = controller.shoppingList[index];
                       return ListTile(
                         title: Text(
                           shopping.nameProduct,
@@ -106,21 +109,25 @@ class BodyRealPurchase extends GetView<RealPurchaseController> {
                         ),
                       );
                     },
-                  );
-                }),
-              ),
-              ColoredBox(
+                  ),
+                ),
+              );
+            },
+          ),
+          GetBuilder<RealPurchaseController>(
+            builder: (controller) {
+              return ColoredBox(
                 color: Colors.green.shade100,
                 child: Text(
-                  'Total: R\$${controller.totalShopping.toStringAsFixed(2)}',
+                  'Total: R\$ ${controller.totalShopping.toStringAsFixed(2)}',
                   style: const TextStyle(
                     fontSize: 18,
                   ),
                 ),
-              )
-            ],
-          );
-        },
+              );
+            },
+          )
+        ],
       ),
     );
   }
